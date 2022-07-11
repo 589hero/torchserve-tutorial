@@ -2,25 +2,30 @@
 This project is for serving with torchserve with MNIST Dataset.
 The whole process is below.
 
-## 1. Train model
+## 1. Install requirements
+```
+pip install -r requirements.txt
+```
+
+## 2. Train model
 ```
 python train.py
 ```
 Trained model will be saved ```--model_save_path``` argument.
 
-## 2. Archive saved model
+## 3. Archive saved model
 ```
 torch-model-archiver --model-name mnist --version 1.0 --model-file model.py --serialized-file model/mnist_model.pth --handler handler.py --export-path model_store --extra-files utils.py
 ```
 Archived model will be saved ```model/mnist_model.pth```.
 
-## 3. Serve archived model
+## 4. Serve archived model
 ```
 torchserve --start --ncs --model-store=model_store --models=mnist.mar
 ```
 The model will be served in local.
 
-## 4. Use API
+## 5. Use API
 ### Health check API
 ```
 curl http://localhost:8080/ping
@@ -58,6 +63,10 @@ The result will be like below.
     }
   ]
 }
+```
+## 6. Stop serving
+```
+torchserve --stop
 ```
 
 ## Reference
