@@ -1,7 +1,6 @@
 import argparse
 from argparse import Namespace
 
-from config import TrainConfig
 from trainer import MNISTTrainer
 from model import MNISTClassifier
 from utils import get_device, get_mnist_dataloader, get_optimizer, get_criterion
